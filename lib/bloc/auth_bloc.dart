@@ -13,7 +13,7 @@ class AuthBloc {
   AuthBloc() {
     action = new PublishSubject<Event>();
 
-    response = action.asyncMap((Event actionEvent) {
+    response = action.asyncMap(( actionEvent) {
 
       if(actionEvent is LoginEvent && actionEvent.type=='fb' ) 
         return AuthService.fbLogin();
@@ -21,6 +21,8 @@ class AuthBloc {
         return AuthService.touchIDLogin();
       else if(actionEvent is LogoutEvent )
         return AuthService.fbLogout(); 
+      else
+        return ErrorResponse("Invalide Input");
       
     });
   }
