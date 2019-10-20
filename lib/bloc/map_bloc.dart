@@ -13,10 +13,9 @@ class MapBloc
           return  MapService.getCurrentLocation();
         else if(event is PlotRouteEvent){
           return MapService.getRoute(event);
-
         }
         else
-          return ErrorResponse("NO event is specified");
+          return ErrorResponse("Event not implemented");
     });
     action.add(CurrentLocationEvent());
   }

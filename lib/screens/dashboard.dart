@@ -50,12 +50,22 @@ class _DashboardState extends State<Dashboard> {
                     message,
                     style: textStyle,
                   ),
-                  RaisedButton(
-                    child: Text("Logout"),
-                    onPressed: () {
-                      authbloc.action.add(LogoutEvent(resp.via));
-                    },
-                  )
+                  Row(
+                    children: <Widget>[
+                      RaisedButton(
+                        child: Text("Logout"),
+                        onPressed: () {
+                          authbloc.action.add(LogoutEvent(resp.via));
+                        },
+                      ),
+                      IconButton(
+                        color: Colors.white,
+                        icon: Icon(Icons.more_vert),
+                        onPressed: () => Navigator.pushNamed(context, "/notification"),
+                      )
+                    ],
+                  ),
+
                 ],
               ),
             ),

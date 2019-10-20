@@ -43,8 +43,8 @@ class MapService {
     double t = pi * v;
     double x = w * cos(t);
     double y = w * sin(t);
-    double new_x = x / cos(latlng.longitude);
+    double newX = x / cos(latlng.longitude);
 
-    return LatLng(new_x + latlng.latitude, y + latlng.longitude);
+    return LatLng(newX + latlng.latitude, y + latlng.longitude);
   }
 }

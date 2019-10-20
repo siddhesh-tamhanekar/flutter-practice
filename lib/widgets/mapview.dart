@@ -23,7 +23,7 @@ class _MapViewState extends State<MapView> {
             if (!snapshot.hasData) return new Loader();
 
             LatLng
-                currentLocation; // = LatLng(37.43296265331129, -122.08832357078792);
+                currentLocation; 
             if (snapshot.data is CurrentLocationResponse) {
               currentLocation = (snapshot.data as CurrentLocationResponse).loc;
             }
@@ -31,10 +31,9 @@ class _MapViewState extends State<MapView> {
             var polylines;
             if (snapshot.data is RouteResponse) {
               currentLocation = (snapshot.data as RouteResponse).current;
-              polylines = Set();
+              polylines = Set<Polyline>();
               polylines.add((snapshot.data as RouteResponse).line);
-              bbox =
-                  null; // will come in the response in real (snapshot.data as RouteResponse).box;
+              bbox =null; // will come in the response in real (snapshot.data as RouteResponse).box;
             }
 
             return Stack(
@@ -61,7 +60,7 @@ class _MapViewState extends State<MapView> {
                   child: RaisedButton(
                     onPressed: () =>
                         mapBloc.action.add(PlotRouteEvent(currentLocation)),
-                    child: Text("Draw a route "),
+                    child: Text("Draw a route"),
                   ),
                 )
               ],
