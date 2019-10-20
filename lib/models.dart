@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class Event{}
 class LoginEvent extends Event{
   String type;
@@ -10,6 +12,13 @@ class LogoutEvent extends Event{
 
   LogoutEvent(this.type);
 }
+
+class CurrentLocationEvent extends Event {}
+class PlotRouteEvent extends Event {
+  LatLng current;
+  PlotRouteEvent(this.current);  
+}
+
 
 class Response{}
 
@@ -28,4 +37,16 @@ class CancelledByUserResponse  extends Response{}
 class ErrorResponse  extends Response{
   String error;
   ErrorResponse(error);
+}
+
+class CurrentLocationResponse extends Response{
+  LatLng loc;
+  CurrentLocationResponse(this.loc);
+}
+
+class RouteResponse extends Response {
+  Polyline line;
+  LatLngBounds box;
+  LatLng current;
+  RouteResponse(this.line, this.box,this.current );
 }

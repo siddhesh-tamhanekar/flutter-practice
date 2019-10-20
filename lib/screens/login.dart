@@ -19,11 +19,14 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     subscription = authbloc.response.listen(( data){
+
         if(data is LoginSuccessResponse)
-          Navigator.pushNamed(context, "/dashboard",arguments: data);
+          Navigator.pushReplacementNamed(context, "/dashboard",arguments: data);
+
         if( data is CancelledByUserResponse)
           _key.currentState.showSnackBar(SnackBar(content: Text("Login Cancelled by User"),));
-   })..onError((error) { print("in error");print(error);});
+
+   });
   }
 
   @override
@@ -38,11 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       key: _key,
       body: Center(
-
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            
             _buildLoginButton(Icons.face,"Login Using Facebook","fb"),
             SizedBox(height: 10.0),
             _buildLoginButton(Icons.fingerprint,"Login Using FingerPrint","touchid"),
